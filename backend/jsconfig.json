@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "#routes/*": ["./routes/*.js"],
+      "#controllers/*": ["./controllers/*.js"],
+      "#services/*": ["./services/*.js"],
+      "#utils/*": ["./utils/*.js"]
+    },
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "target": "es2020"
+  },
+  "exclude": ["node_modules"]
+}
