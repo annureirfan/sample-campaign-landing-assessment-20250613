@@ -1,30 +1,21 @@
 "use strict";
+
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface, DataTypes) {
     await queryInterface.createTable("SectionContents", {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      content: Sequelize.JSON,
+      id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+      sectionType: DataTypes.ENUM("Hero", "Footer"),
+      content: DataTypes.JSON,
       campaignId: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         references: { model: "Campaigns", key: "id" },
-        onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
-      templateSectionId: {
-        type: Sequelize.INTEGER,
-        references: { model: "TemplateSections", key: "id" },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
-      },
-      createdAt: Sequelize.DATE,
-      updatedAt: Sequelize.DATE,
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE,
     });
   },
+
   async down(queryInterface) {
     await queryInterface.dropTable("SectionContents");
   },

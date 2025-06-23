@@ -1,23 +1,24 @@
 "use strict";
+
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface, DataTypes) {
     await queryInterface.createTable("CampaignProducts", {
+      id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
       campaignId: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         references: { model: "Campaigns", key: "id" },
-        onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
       productId: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         references: { model: "Products", key: "id" },
-        onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
-      createdAt: Sequelize.DATE,
-      updatedAt: Sequelize.DATE,
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE,
     });
   },
+
   async down(queryInterface) {
     await queryInterface.dropTable("CampaignProducts");
   },

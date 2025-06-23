@@ -1,18 +1,17 @@
 "use strict";
+
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface, DataTypes) {
     await queryInterface.createTable("Templates", {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      name: { type: Sequelize.STRING },
-      createdAt: Sequelize.DATE,
-      updatedAt: Sequelize.DATE,
+      id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+      name: DataTypes.STRING,
+      backgroundColor: DataTypes.STRING,
+      textColor: DataTypes.STRING,
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE,
     });
   },
+
   async down(queryInterface) {
     await queryInterface.dropTable("Templates");
   },
