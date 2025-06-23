@@ -1,0 +1,104 @@
+### Campaign Endpoints
+
+### Get all campaigns
+GET http://localhost:5000/campaigns
+
+### Get campaign by slug
+GET http://localhost:5000/campaigns/summer-campaign
+
+### Create new campaign
+POST http://localhost:5000/campaigns
+Content-Type: application/json
+
+{
+  "name": "New Campaign",
+  "templateId": 1,
+  "slug": "new-campaign",
+  "language": "en"
+}
+
+### Delete campaign
+DELETE http://localhost:5000/campaigns/4
+
+
+
+
+### Product Endpoints
+
+### Get all products
+GET http://localhost:5000/products
+
+### Create new product
+POST http://localhost:5000/products
+Content-Type: application/json
+
+{
+  "name": "New Product",
+  "price": 100,
+  "imageUrl": "image.jpg"
+}
+
+### Delete product
+DELETE http://localhost:5000/products/8
+
+### Get product by campaign id
+GET http://localhost:5000/products/1
+
+### Update product
+PUT http://localhost:5000/products/7
+Content-Type: application/json
+
+{
+  "price": 9.99
+}
+
+
+### Section Content Endpoints
+
+### Get all section contents
+GET http://localhost:5000/section-contents
+
+### Create new section content
+POST http://localhost:5000/section-contents
+Content-Type: application/json
+
+{
+  "sectionType": "Footer",
+  "content": {"text":"New footer content"},
+  "campaignId": 2
+}
+
+### Get section content by campaign id
+GET http://localhost:5000/section-contents/1
+
+### Update section content
+PUT http://localhost:5000/section-contents/8
+Content-Type: application/json
+
+{
+  "content": {"text":"New footer content"}
+}
+
+### Delete section content
+DELETE http://localhost:5000/section-contents/4
+
+
+
+
+### Template Endpoints
+
+### Get all templates
+GET http://localhost:5000/templates
+
+### Create new template
+POST http://localhost:5000/templates
+Content-Type: application/json
+
+{
+  "name": "New Template",
+  "backgroundColor": "#ffffff",
+  "textColor": "#000000"
+}
+
+### Delete template
+DELETE http://localhost:5000/templates/4

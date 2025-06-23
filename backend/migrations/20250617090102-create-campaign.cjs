@@ -1,26 +1,22 @@
 "use strict";
+
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface, DataTypes) {
     await queryInterface.createTable("Campaigns", {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      name: Sequelize.STRING,
-      slug: { type: Sequelize.STRING, unique: true },
-      language: Sequelize.ENUM("en", "zh", "ms"),
+      id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+      name: DataTypes.STRING,
+      slug: { type: DataTypes.STRING, unique: true },
+      language: DataTypes.ENUM("en", "zh", "ms"),
       templateId: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         references: { model: "Templates", key: "id" },
-        onUpdate: "CASCADE",
-        onDelete: "SET NULL",
+        onDelete: "CASCADE",
       },
-      createdAt: Sequelize.DATE,
-      updatedAt: Sequelize.DATE,
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE,
     });
   },
+
   async down(queryInterface) {
     await queryInterface.dropTable("Campaigns");
   },

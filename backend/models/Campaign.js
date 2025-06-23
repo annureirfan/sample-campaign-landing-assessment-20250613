@@ -1,17 +1,39 @@
 export default (sequelize, DataTypes) => {
-  const Campaign = sequelize.define("Campaign", {
-    name: DataTypes.STRING,
-    slug: { type: DataTypes.STRING, unique: true },
-    language: DataTypes.ENUM("en", "zh", "ms"),
-  });
+  const Campaign = sequelize.define(
+    "Campaigns",
+    {
+      name: DataTypes.STRING,
+      slug: { type: DataTypes.STRING, unique: true },
+      language: DataTypes.ENUM("en", "zh", "ms"),
+      templateId: {
+        type: DataTypes.INTEGER,
+        field: "templateId",
+        allowNull: false,
+      },
+    },
+    {
+      timestamps: true,
+      freezeTableName: true,
+    }
+  );
 
   Campaign.associate = (models) => {
-    Campaign.belongsTo(models.Template);
-    Campaign.belongsToMany(models.Product, {
-      through: models.CampaignProduct,
-      foreignKey: "campaignId",
+    Campaign.belongsTo(models.Templates, {
+      foreignKey: "templateId",
+      as: "template",
     });
-    Campaign.hasMany(models.SectionContent);
+
+    Campaign.hasMany(models.SectionContents, {
+      foreignKey: "campaignId",
+      as: "sectionContents",
+    });
+
+    Campaign.belongsToMany(models.Products, {
+      through: models.CampaignProducts,
+      foreignKey: "campaignId",
+      otherKey: "productId",
+      as: "products",
+    });
   };
 
   return Campaign;
