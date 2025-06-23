@@ -5,7 +5,7 @@ import cors from "cors";
 
 import db from "#models/index";
 
-import campaignRoutes from "#routes/campaign.routes";
+import templateRoutes from "#routes/template.routes";
 
 const app = express();
 
@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Load routes
-app.use("/campaigns", campaignRoutes);
+app.use("/templates", templateRoutes);
 
 const PORT = process.env.PORT || 5000;
 db.sequelize.sync().then(() => {
